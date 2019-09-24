@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Popup</title>
+    <link href="css/themify-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/anim.css">
+    <link rel="stylesheet" href="/css/darkmode.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <style media="screen">
+        body {
+            /* Doc chromium popup dimensions */
+            /*https://cs.chromium.org/chromium/src/chrome/browser/ui/views/extensions/extension_popup.cc?rcl=084514a32ae45d693e7068b4b63bafcc0aa85b63&l=36*/
+            /* Max dimensions w: 800, h: 600 */
+            width: 700px;
+            height: 600px;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .width-height-40 {
+            width: 40px;
+            height: 40px;
+        }
+        .flex-justify-center {
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<main id="popup">
+    <div class="dashboard-popin"  v-bind:class="{'dark': cookie }" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+        <div class="dashboard-popin-header">
+            <div v-if="!formDisplay" v-on:click="toggleComp('main')" class="dashboard-popin-header-previous ti ti-angle-left color-info"></div>
+            <img src="img/bleu_transparent.png" class="dashboard-popin-header-logo">
+            <div class="dashboard-popin-header-close" v-on:click="closeWindow"><span class="ti ti-close color-info" ></span></div>
+        </div>
+        <!-- COMPONENT : addClient -->
+        <div class="dashboard-popin-content d-xs-flex p-top-xs-50 flex-column align-items-center full-width" v-bind:class="{'dark_b': cookie }" v-if="addClient">
+            <div class="full-height full-width width-max-xs-600">
+                <div class="flex-center flex-column m-bottom-xs-40">
+                    <h2 class="m-bottom-xs-10">Ajouter un client</h2>
+                    <h6>
+                        <span class="color-text">
+                        Renseigne les infos du client
+                        </span>
+                    </h6>
+                </div>
+                <div mode="out-in" class="full-width">
+                    <div mode="out-in" class="full-width full-width">
+                        <div class="full-width text-uppercase m-bottom-xs-10">
+                            <h6>Nom de l'entreprise</h6>
+                        </div>
+                        <div class="full-width base-inline"><input type="text" name="" v-bind:class="{'dark': cookie }" v-bind:class="{'white': cookie }" placeholder="NOM / SIREN / SIRET" class="full-width base-input-lg" v-on:keyup="submit"> <button class="background-color-body radius-left-xs-0 base-button" v-bind:class="{'dark': cookie }"><span class="base-icon ti ti-search"></span></button></div>
+                        <div class="flex-center m-vertical-xs-20">
+                            <label class="color-disabled text-uppercase base-label">
+                                <p class="base-text-sm">
+                                    Rechercher le nom exact
+                                </p>
+                            </label>
+                            <span class="delimiter"></span>
+                            <div class="base-toggle"><label for="e38f50bd-e1d6-4f43-9ca2-dd8f2a95f163"></label> <input type="toggle" name="" id="e38f50bd-e1d6-4f43-9ca2-dd8f2a95f163"></div>
+                        </div>
+                        <ul class="m-vertical-xs-20 full-width base-list" v-if="companies">
+                            <li class="m-top-xs-5 base-list-item" v-for="(item, index) in companies" v-on:click="searchClient(index)">
+                                <div class="base-list-item-content" v-bind:class="{'dark': cookie}">
+                                    <div class="base-avatar-sm width-height-40">
+                                        GM
+                                    </div>
+                                    <div class="flex-column m-left-xs-10 width-max-xs-200">
+                                        <p class="info text-uppercase full-width base-text base-pointer base-ellipsis">
+                                            {{ item.name }}
+                                        </p>
+                                        <p class="text-uppercase base-text-sm base-ellipsis">
+                                            {{ item.address.numero }} {{ item.address.street }}
+                                        </p>
+                                    </div>
+                                    <span class="delimiter"></span>
+                                    <p class="base-text base-pointer base-ellipsis info width-max-xs-100 m-right-xs-10 hover-translate">
+                                        {{ item.address.city }}
+                                    </p>
+                                    <span class="hover-icon info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div>
+                        </div>
+                    </div>
+                    <p class="m-top-xs-20 text-center base-text"></p>
+                </div>
+            </div>
+        </div>
+        <!-- COMPONENT: addClient - Create new client -->
+        <div class="dashboard-popin-content d-xs-flex p-top-xs-50 flex-column align-items-center full-width" v-bind:class="{'dark_b': cookie}" v-if="addClientForm.display" >
+            <div class="full-height full-width width-max-xs-600">
+                <div class="flex-center flex-column m-bottom-xs-40">
+                    <h2 class="m-bottom-xs-10">Ajouter un client</h2>
+                    <h6>
+                        <span class="color-text">
+                        Renseigne les infos du client
+                        </span>
+                    </h6>
+                </div>
+                <div mode="out-in" class="full-width" v-if="addClientForm.client">
+                    <div mode="out-in" class="full-width full-width">
+                        <ul class="m-vertical-xs-20 full-width base-list">
+                            <li class="m-top-xs-5 base-list-item">
+                                <!---->
+                                <div class="base-list-item-content" v-bind:class="{'dark': cookie }">
+                                    <div class="base-avatar-sm" style="width: 40px; height: 40px;">
+                                        GM
+                                    </div>
+                                    <div class="flex-column m-left-xs-10 width-max-xs-200">
+                                        <p class="info text-uppercase full-width base-text base-pointer base-ellipsis">
+                                            {{ addClientForm.client.name }}
+                                        </p>
+                                        <p class="text-uppercase base-text-sm base-ellipsis">
+                                            {{ addClientForm.client.address.numero }} {{ addClientForm.client.address.street }}
+                                        </p>
+                                    </div>
+                                    <span class="delimiter"></span>
+                                    <p class="base-text base-pointer base-ellipsis info width-max-xs-100 m-right-xs-10 hover-translate">
+                                        {{ addClientForm.client.address.city }}
+                                    </p>
+                                    <span class="hover-icon info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-xs-flex flex-center p-xs-40 flex-column" style="opacity: 1; max-height: none; transform: matrix(1, 0, 0, 1, 0, 0);">
+                        <div class="justify-content-between flex-row width-min-xs-600 m-bottom-xs-10 base-inline">
+                            <div class="flex-center">
+                                <p class=" color-text text-center base-text">
+                                    SIRET
+                                </p>
+                                <div class="m-left-xs-10 base-box" v-bind:class="{'dark': cookie }">
+                                    <p class="color-info font-weight-medium base-text">
+                                        {{ addClientForm.client.siret }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex-center">
+                                <p class=" color-text text-center base-text">
+                                    TVA
+                                </p>
+                                <div class="m-left-xs-10 base-box" v-bind:class="{'dark': cookie }">
+                                    <p class="color-info font-weight-medium base-text">
+                                        {{ addClientForm.client.tva.numero }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex-center">
+                                <p class=" color-text text-center base-text">
+                                    APE
+                                </p>
+                                <div class="m-left-xs-10 base-box" v-bind:class="{'dark': cookie }">
+                                    <p class="color-info font-weight-medium base-text">
+                                        8690E
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="full-width">
+                            <h6 class="m-vertical-xs-10">
+                                Adresse
+                            </h6>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Numéro
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" :value="addClientForm.client.address.numero" placeholder="99" class="width-max-xs-80 base-input">
+                            </div>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Rue
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" placeholder="Nom de la voie" :value="addClientForm.client.address.street" class="full-width base-input">
+                            </div>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Code postal
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" :value="addClientForm.client.address.zipcode" placeholder="99000" class="full-width base-input">
+                            </div>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Ville
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" :value="addClientForm.client.address.city" placeholder="Ville" class="full-width base-input">
+                            </div>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Pays
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" placeholder="Pays" :value="addClientForm.client.address.country" class="full-width base-input">
+                            </div>
+                        </div>
+                        <div class="full-width">
+                            <h6 class="m-vertical-xs-10">
+                                Contact
+                            </h6>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Email de contact
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" :value="addClientForm.client.email" placeholder="Email" class="full-width base-input">
+                            </div>
+                            <div class="m-bottom-xs-5 full-width base-field">
+                                <label class="color-disabled text-uppercase width-max-xs-150 full-width base-label">
+                                    <p class="base-text-sm">
+                                        Nom du référent
+                                    </p>
+                                </label>
+                                <input type="text" name="" v-bind:class="{'dark': cookie }" placeholder="Nom" class="full-width base-input">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="m-top-xs-20 text-center base-text"></p>
+                </div>
+            </div>
+        </div>
+        <!-- COMPONENT: Main -->
+        <div class="dashboard-popin-content d-xs-flex p-top-xs-50 flex-column align-items-center full-height full-width" v-if="formDisplay" v-bind:class="{'dark_b_t': cookie}">
+            <div class="full-height full-width width-max-xs-400">
+                <div class="flex-center flex-column m-bottom-xs-40" v-bind:class="{'white': cookie}">
+                    <h4 class="m-bottom-xs-10" v-if="info">Hello {{ info.data.data[0].name }}</h4>
+                    <h6>
+                        Que veux-tu faire ?
+                    </h6>
+                </div>
+                <div class="flex-center flex-column m-top-xs-40">
+                    <ul class="m-vertical-xs-20 base-list-sm">
+                        <li class="m-vertical-xs-10 base-list-item base-pointer arrivalLeft" style="animation: arrivalLeft .5s, fadein 1.5s">
+                            <!---->
+                            <div class="base-list-item-content" v-bind:class="{'dark': cookie }" v-on:click="toggleComp('addClient')">
+                                <span class="info m-horizontal-xs-20 base-icon ti ti-user"></span>
+                                <p class="info m-xs-10 width-max-xs-300 base-text-lg">
+                                    Ajouter un client
+                                </p>
+                                <span class="delimiter"></span> <span class="info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                            </div>
+                        </li>
+                        <li class="m-vertical-xs-10 base-list-item base-pointer arrivalLeft" style="animation: arrivalLeft .7s, fadein 1.5s">
+                            <!---->
+                            <div class="base-list-item-content" v-bind:class="{'dark': cookie }">
+                                <span class="info m-horizontal-xs-20 base-icon ti ti-file"></span>
+                                <p class="info m-xs-10 width-max-xs-300 base-text-lg">
+                                    Créer une facture
+                                </p>
+                                <span class="delimiter"></span> <span class="info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                            </div>
+                        </li>
+                        <li class="m-vertical-xs-10 base-list-item base-pointer arrivalLeft" style="animation: arrivalLeft .9s, fadein 1.5s">
+                            <!---->
+                            <div class="base-list-item-content" v-bind:class="{'dark': cookie }">
+                                <span class="info m-horizontal-xs-20 base-icon ti ti-file"></span>
+                                <p class="info m-xs-10 width-max-xs-300 base-text-lg">
+                                    Créer un devis
+                                </p>
+                                <span class="delimiter"></span> <span class="info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                            </div>
+                        </li>
+                        <li class="m-vertical-xs-10 base-list-item base-pointer arrivalLeft" style="animation: arrivalLeft 1.1s, fadein 1.5s">
+                            <!---->
+                            <div class="base-list-item-content" v-bind:class="{'dark': cookie }">
+                                <span class="info m-horizontal-xs-20 base-icon ti ti-file"></span>
+                                <p class="info m-xs-10 width-max-xs-300 base-text-lg">
+                                    Importer une facture
+                                </p>
+                                <span class="delimiter"></span> <span class="info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                            </div>
+                        </li>
+                        <li class="m-vertical-xs-10 base-list-item base-pointer arrivalLeft" style="animation: arrivalLeft 1.3s, fadein 1.5s">
+                            <!---->
+                            <div class="base-list-item-content" v-bind:class="{'dark': cookie }">
+                                <span class="info m-horizontal-xs-20 base-icon ti ti-file"></span>
+                                <p class="info m-xs-10 width-max-xs-300 base-text-lg">
+                                    Importer un devis
+                                </p>
+                                <span class="delimiter"></span> <span class="info m-right-xs-10 base-icon ti ti-angle-right base-pointer"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- COMPONENT: Footer -->
+        <div class="dashboard-popin-footer flex-justify-center" v-bind:class="{'dark_b_t': cookie}">
+            <div v-if="addClientForm.client">
+                <button class="color-success base-button base-transparent" v-on:click="redirectTo('https://demo-test.freebe.me/dashboard')">Créer le client</button>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="libs/vue.js"></script>
+<script src="libs/axios.js"></script>
+
+<script type="text/javascript" src="js/popup.js"></script>
+</body>
+</html>

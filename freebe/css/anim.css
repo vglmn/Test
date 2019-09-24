@@ -1,0 +1,82 @@
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity:1
+    }
+    to {
+        opacity:0
+    }
+}
+
+@keyframes arrivalLeft {
+  0% {
+    left: -600px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes arrivalLeftW {
+  0% {
+    width: 0%
+  }
+  100% {
+    width: 100%
+  }
+}
+@keyframes arrivalRight {
+  0% {
+    right: -600px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+
+@keyframes arrivalTop {
+  0% {
+    top: -600px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.arrivalBottom {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 20s linear forwards;
+}
+
+.background {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 9000;
+    background-image: linear-gradient(to right bottom, #66a6ff, #63b0ff, #65baff, #6cc3ff, #76ccff);
+    animation: fadeOut 1.5s
+}
+.arrivalLeft {
+  animation: arrivalLeft .5s, fadein 1.5s;
+}
+.arrivalRight {
+  animation: arrivalRight .5s, fadein 1.5s;
+}
+.arrivalTop {
+  animation: arrivalTop .5s, fadein 1.5s;
+}

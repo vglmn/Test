@@ -1,0 +1,12 @@
+let nbTours = 1;
+
+console.log("Le manège démarre");
+while (nbTours <= 10) {
+  console.log(`C'est le tour numéro ${nbTours}`);
+  nbTours++;
+}
+// Ajoutez votre code ici
+
+console.log("Le manège s'arrête");
+
+

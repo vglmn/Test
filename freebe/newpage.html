@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nouvel onglet</title>
+  <link rel="stylesheet" href="css/home.css">
+  <link href="css/themify-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/anim.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+</head>
+
+<body class=" desktop chrome portrait">
+  <div id="app" v-if="info && client" v-bind:class="{'dark': isActive }">
+
+    <div v-show="show" class="background"></div>
+
+    <div class="dashboard-container">
+      <div class="parent arrivalTop" v-bind:class="{'dark_b': isActive}">
+        <img :src="logo" style="width:7%" alt="">
+        <div class="enfant">
+          <p for="">Rechercher sur google :</p>
+          <form action="https://google.com/search?">
+            <input type="search" style="width:100%" name="q" id="" v-bind:class="{'dark':isActive}">
+          </form>
+        </div>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox" @click="dark()" :checked="isActive">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+      </div>
+
+      <div class="dashboard-tooltip-wrapper"><span></span></div>
+      <div class="dashboard-notification-wrapper"><span></span></div>
+      <div class="dashboard-panel" style="margin-top: 8em">
+        <div class="dashboard-content flex-xxl-center flex-xs-column">
+          <h1 class="statistic-description text-primary">Bienvenue
+            {{ info.data.data[0].name }}
+          </h1>
+          <p class="statistic-description" v-bind:class="{'white': isActive }">
+              {{ info.data.data[0].activity.ape }}
+          </p>
+          <div class="d-xs-flex justify-content-between flex-wrap full-width base-inline">
+          <div class="statistic no-icon" v-bind:class="{'relou': isActive }">
+            <!---->
+            <p class="statistic-title" v-bind:class="{'white': isActive }"><span><span>
+                  Encaissements
+                </span></span></p>
+            <h1 class="statistic-description"><span><span>
+                  31 300€
+                </span></span></h1>
+            <div class="statistic-footer">
+              <p>
+                <!---->
+
+                01 janv. 2019 - 31 déc. 2019
+              </p>
+            </div>
+            <div class="statistic-actions"></div>
+          </div>
+          <div class="statistic no-icon" v-bind:class="{'relou': isActive }">
+            <!---->
+            <p class="statistic-title" v-bind:class="{'white': isActive }"><span><span>
+                  Encaissements
+                </span></span></p>
+            <h1 class="statistic-description"><span><span>
+                  31 300€
+                </span></span></h1>
+            <div class="statistic-footer">
+              <p>
+                <!---->
+
+                01 janv. 2019 - 31 mars 2019
+              </p>
+            </div>
+            <div class="statistic-actions"></div>
+          </div>
+          <div class="statistic no-icon"  v-bind:class="{'relou': isActive }">
+            <!---->
+            <p class="statistic-title" v-bind:class="{'white': isActive }"><span>Cotisations <span>22.20%</span></span></p>
+            <h1 class="statistic-description"><span>
+                6 949€
+              </span></h1>
+            <div class="statistic-footer">
+              <p><span>
+                  01 janv. 2019
+                  -
+                  31 mars 2019
+                </span></p>
+            </div>
+            <div class="statistic-actions"></div>
+          </div>
+          <div class="statistic no-icon"  v-bind:class="{'relou': isActive }">
+            <!---->
+            <p class="statistic-title" v-bind:class="{'white': isActive }"><span>Bénéfices</span></p>
+            <h1 class="statistic-description"><span><span>
+                  24 351€
+                </span></span></h1>
+            <div class="statistic-footer">
+              <p><span>
+                  11 févr. 2019 - 11 févr. 2019
+                </span></p>
+            </div>
+            <div class="statistic-actions"></div>
+          </div>
+        </div>
+        <div class="d-xs-flex full-width base-inline">
+          <div class="flex-fill m-xs-20 base-inline arrivalLeft fadein" >
+            <div class="flex-center flex-column full-height full-width base-box" v-bind:class="{'dark_b': isActive }">
+              <div class="zindex-xs-3 p-xs-10 m-bottom-xs-30 d-xs-flex align-items-center full-width">
+                <p>Chiffre d'affaires</p> <span class="delimiter"></span>
+                <div class="height-max-xs-30 base-select base-transparent">
+                  <div class="base-select-toggle">
+                    <div class="base-select-header" v-bind:class="{'dark':isActive}">
+                      <p class="full-width text-center width-min-xs-50 base-text-sm">
+                        2018
+                      </p> <span class="delimiter"></span> <span class="m-right-xs-10 base-icon ti ti-angle-down"></span>
+                    </div>
+                    <!---->
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <div class="chart"><svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%"
+                  class="ct-chart-bar" style="width: 100%; height: 100%;">
+                  <g class="ct-grids">
+                    <line x1="10" x2="10" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="49.583333333333336" x2="49.583333333333336" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="89.16666666666667" x2="89.16666666666667" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="128.75" x2="128.75" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="168.33333333333334" x2="168.33333333333334" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="207.91666666666669" x2="207.91666666666669" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="247.5" x2="247.5" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="287.08333333333337" x2="287.08333333333337" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="326.6666666666667" x2="326.6666666666667" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="366.25" x2="366.25" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="405.83333333333337" x2="405.83333333333337" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                    <line x1="445.4166666666667" x2="445.4166666666667" y1="15" y2="121" class="ct-grid ct-horizontal"></line>
+                  </g>
+                  <g>
+                    <g class="ct-series ct-series-a arrivalBottom">
+                      <line x1="29.791666666666668" x2="29.791666666666668" y1="121" :y2="random[0]" class="ct-bar" ct:value="4500"></line>
+                    </g>
+                    <g class="ct-series ct-series-b arrivalBottom">
+                      <line x1="69.375" x2="69.375" y1="121" :y2="random[1]" class="ct-bar" ct:value="26800"></line>
+                    </g>
+                    <g class="ct-series ct-series-c arrivalBottom">
+                      <line x1="108.95833333333334" x2="108.95833333333334" y1="121" :y2="random[2]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-d arrivalBottom">
+                      <line x1="148.54166666666666" x2="148.54166666666666" y1="121" :y2="random[3]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-e arrivalBottom">
+                      <line x1="188.125" x2="188.125" y1="121" :y2="random[4]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-f arrivalBottom">
+                      <line x1="227.70833333333334" x2="227.70833333333334" y1="121" :y2="random[5]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-g arrivalBottom">
+                      <line x1="267.2916666666667" x2="267.2916666666667" y1="121" :y2="random[6]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-h arrivalBottom">
+                      <line x1="306.87500000000006" x2="306.87500000000006" y1="121" :y2="random[7]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-i arrivalBottom">
+                      <line x1="346.45833333333337" x2="346.45833333333337" y1="121" :y2="random[8]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-j arrivalBottom">
+                      <line x1="386.0416666666667" x2="386.0416666666667" y1="121" :y2="random[9]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-k arrivalBottom">
+                      <line x1="425.62500000000006" x2="425.62500000000006" y1="121" :y2="random[10]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                    <g class="ct-series ct-series-l arrivalBottom">
+                      <line x1="465.20833333333337" x2="465.20833333333337" y1="121" :y2="random[11]" class="ct-bar" ct:value="0"></line>
+                    </g>
+                  </g>
+                  <g class="ct-labels">
+                    <foreignObject style="overflow: visible;" x="10" y="126" width="39.583333333333336" height="20"><span
+                        class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Janv</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="49.583333333333336" y="126" width="39.583333333333336"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Févr</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="89.16666666666667" y="126" width="39.58333333333333"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Mars</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="128.75" y="126" width="39.58333333333334" height="20"><span
+                        class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Avr</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="168.33333333333334" y="126" width="39.58333333333334"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Mai</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="207.91666666666669" y="126" width="39.583333333333314"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Juin</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="247.5" y="126" width="39.58333333333337" height="20"><span
+                        class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Juil</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="287.08333333333337" y="126" width="39.583333333333314"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Août</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="326.6666666666667" y="126" width="39.583333333333314"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Sept</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="366.25" y="126" width="39.58333333333337" height="20"><span
+                        class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Oct</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="405.83333333333337" y="126" width="39.583333333333314"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Nov</span></foreignObject>
+                    <foreignObject style="overflow: visible;" x="445.4166666666667" y="126" width="39.583333333333314"
+                      height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/"
+                        style="width: 40px; height: 20px;" v-bind:class="{'white': isActive }">Déc</span></foreignObject>
+                  </g>
+                </svg></div>
+            </div>
+            <div class="flex-center flex-column width-min-xs-200 base-box" v-bind:class="{'dark_b': isActive }">
+              <div class="full-width half-height text-center base-inline">
+                <div class="flex-center flex-column m-right-xs-40 half-width">
+                  <p class="m-bottom-xs-10 color-disabled full-width base-text"  v-bind:class="{'white': isActive }">
+                    Virements
+                  </p>
+                  <h3 class="color-info full-width">
+                    12
+                  </h3>
+                </div>
+                <div class="flex-center flex-column half-width">
+                  <p class="m-bottom-xs-10 color-disabled full-width base-text" v-bind:class="{'white': isActive }">
+                    Clients
+                  </p>
+                  <h3 class="color-info full-width">
+                    19
+                  </h3>
+                </div>
+              </div>
+              <div class="full-width half-height text-center base-inline">
+                <div class="flex-center flex-column m-right-xs-40 half-width">
+                  <p class="m-bottom-xs-10 color-disabled full-width base-text" v-bind:class="{'white': isActive }">
+                    Devis
+                  </p>
+                  <h3 class="color-info full-width">
+                    7
+                  </h3>
+                </div>
+                <div class="flex-center flex-column half-width">
+                  <p class="m-bottom-xs-10 color-disabled full-width base-text" v-bind:class="{'white': isActive }">
+                    Factures
+                  </p>
+                  <h3 class="color-info full-width">
+                    15
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-xs-flex justify-content-between flex-column width-min-xs-350 m-xs-20 base-inline">
+            <div class="d-xs-flex flex-column full-width height-min-xs-70">
+              <p class="color-disabled m-bottom-xs-5 base-text-sm" v-bind:class="{'white': isActive }">
+                Prochaine déclaration
+              </p>
+              <div class="p-horizontal-xs-20 d-xs-flex align-items-center full-width base-box arrivalRight" v-bind:class="{'dark_b': isActive}" style="animation: arrivalRight .5s, fadein 1.5s;">
+                <div class="base-image"><img src="https://cdn.freebe.me/assets-fmXXlcpcIK/images/icons/calendar@3x.png"
+                    alt="" style="width: 40px; height: 35px; transform: scale(1);">
+                  <!---->
+                </div>
+                <h3 class="m-left-xs-40 font-weight-bold color-info width-min-xs-100">
+                  Du 01 avr. au 30 avr.
+                </h3>
+              </div>
+            </div>
+            <div class="d-xs-flex flex-column full-width height-min-xs-70">
+              <p class="color-disabled m-bottom-xs-5 base-text-sm" v-bind:class="{'white': isActive }">
+                Meilleur client
+              </p>
+              <div class="p-horizontal-xs-20 d-xs-flex align-items-center full-width base-box arrivalRight" v-bind:class="{'dark_b': isActive}" style="animation: arrivalRight .7s, fadein 1.5s;">
+                <div class="base-image"><img src="https://cdn.freebe.me/assets-fmXXlcpcIK/images/icons/best@3x.png" alt=""
+                    style="width: 40px; height: 34.0741px; transform: scale(1);">
+                  <!---->
+                </div>
+                <h3 class="m-left-xs-40 font-weight-bold color-info text-ellipsis width-min-xs-100 width-max-xs-200">
+                  {{ client.data.data[1].name }}
+                </h3>
+              </div>
+            </div>
+            <div class="d-xs-flex flex-column full-width height-min-xs-70">
+              <p class="color-disabled m-bottom-xs-5 base-text-sm" v-bind:class="{'white': isActive }">
+                Montants en attente de paiement
+              </p>
+              <div class="p-horizontal-xs-20 d-xs-flex align-items-center full-width base-box arrivalRight" v-bind:class="{'dark_b': isActive}" style="animation: arrivalRight .9s, fadein 1.5s;">
+                <div class="base-image"><img src="https://cdn.freebe.me/assets-fmXXlcpcIK/images/icons/wallet@3x.png"
+                    alt="" style="width: 40px; height: 33.8462px; transform: scale(1);">
+                  <!---->
+                </div>
+                <h3 class="m-left-xs-40 font-weight-bold color-info width-min-xs-100">
+                  11 000€
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
+        <div class="d-xs-flex flex-wrap full-width base-inline">
+          <div class="d-xs-flex flex-column full-width m-top-xs-20">
+            <div class="d-xs-flex justify-content-between full-width m-bottom-xs-20">
+              <div class="full-width m-right-xs-10">
+                <div class="d-xs-flex justify-content-end">
+                  <p class="base-text-sm font-weight-medium color-disabled" v-bind:class="{'white': isActive }"><span>
+                      Tu ne factures pas la TVA
+                    </span>
+                    <!---->
+                  </p>
+                </div>
+              </div>
+              <div class="full-width m-left-xs-10">
+                <div class="d-xs-flex justify-content-start">
+                  <p class="base-text-sm font-weight-medium color-info"><span>
+                      Tu factures la TVA
+                    </span>
+                    <!---->
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="d-xs-flex justify-content-between full-width">
+              <div class="flex-fill m-right-xs-10 base-box"  v-bind:class="{'dark_b': isActive}">
+                <div class="no-gradient base-progress-xl arrivalLeft" style="animation: arrivalLeftW 3s">
+                  <div class="base-progress-current" style="width: calc(88.9205%);">
+                    <p>31300</p>
+                  </div>
+                  <div class="base-progress-steps" style="transform: scaleX(0.889205);"></div>
+                </div>
+              </div>
+              <div class="flex-fill m-left-xs-10 base-box" v-bind:class="{'dark_b': isActive}">
+                <div class="no-gradient base-progress-xl">
+                  <!---->
+                  <div class="base-progress-steps" style="transform: scaleX(0);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-xs-flex justify-content-between full-width m-top-xs-20">
+              <div class="full-width m-horizontal-xs-20">
+                <div>
+                  <p class="font-weight-medium color-info base-text">
+                    0€
+                  </p>
+                </div>
+              </div>
+              <div class="width-max-xs-200 full-width m-horizontal-xs-0">
+                <div class="flex-center">
+                  <p class="text-center base-text"><span class="font-weight-medium color-info">
+                      35200€
+                    </span> <br> <small class="color-disabled">
+                      Seuil de TVA
+                    </small></p>
+                  <!---->
+                </div>
+              </div>
+              <div class="full-width m-left-xs-20">
+                <div class="d-xs-flex justify-content-end">
+                  <p class="text-xs-right base-text"><span class="font-weight-medium color-info">
+                      70000€
+                    </span> <br> <small class="color-disabled">
+                      Plafond max de chiffre d’affaires
+                    </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <span></span> <span></span>
+    <div>
+      <!---->
+      <div class="snotify snotify-left_top"></div>
+      <div class="snotify snotify-left_center"></div>
+      <div class="snotify snotify-left_bottom"></div>
+      <div class="snotify snotify-right_top"></div>
+      <div class="snotify snotify-right_center"></div>
+      <div class="snotify snotify-right_bottom"></div>
+      <div class="snotify snotify-center_top"></div>
+      <div class="snotify snotify-center_center"></div>
+      <div class="snotify snotify-center_bottom"></div>
+    </div>
+    <div class="full-centered full-screen global-loader"></div>
+  </div>
+</div>
+  <script src="libs/vue.js"></script>
+  <script src="libs/axios.js"></script>
+  <script src="js/background.js"></script>
+</body>
+
+</html>

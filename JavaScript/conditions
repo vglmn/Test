@@ -1,0 +1,10 @@
+const nombre = Number(prompt("Entrez un nombre :"));
+if (nombre > 0) { //Si le nombre est supérieur à 0
+  console.log(nombre + " est positif");
+} else { // Si le nombre est inférieur ou égale à 0
+  if (nombre < 0) {
+    console.log(nombre + " est négatif");
+  } else { // Si on mets 0
+    console.log(nombre + " est nul");
+  }
+}

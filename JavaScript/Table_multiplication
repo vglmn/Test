@@ -1,0 +1,8 @@
+const nombre = 7; // Faites varier cette variable entre 1 et 10
+console.log(`Table de multiplication de ${nombre}`);
+
+let i = 1
+while (i <= 10) {
+  console.log(`${nombre} x ${i} = ${nombre * i}`);
+  i++;
+}
